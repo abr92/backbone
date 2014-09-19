@@ -1,0 +1,36 @@
+body{
+	font-family: helvetica;
+	text-align: center;
+}
+ul{
+	display:  block;
+	margin:  auto;
+	text-align: left;
+	padding: 5px 20%;
+	margin: 0px
+}
+ul li{
+	display:  block;
+	list-style: none;
+	border: solid 1px rgb(213, 213, 213);
+	margin:  15px;
+	padding: 20px;
+	border-radius: 5px;
+}
+nav > ul li:first-child{
+	margin-left:  0px
+}
+div{
+	margin: 10px;
+}
+nav > ul li{
+	display: inline-block;
+	margin: 5px;
+}
+#content{
+	border: solid 1px rgb(213, 213, 213);
+	border-radius: 5px;
+	width: 60%;
+	margin: auto;
+	padding: 10px 0px;
+}
