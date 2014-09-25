@@ -50,7 +50,7 @@ View = Backbone.View.extend({
 	initialize : function(){
 		console.log('New view');
 	},
-	render : function(file){
+	renderTemplate : function(file){
 		self = this;
 		$.get(file, function(crude){
 			template = Handlebars.compile(crude),
@@ -97,12 +97,12 @@ SingularView = Backbone.View.extend({
 		console.log(this.model.attributes);
 		return this;
 	},
-	renderPartials : function(file){
+	renderPartials : function(element,file){
 		self = this;
 		$.get(file, function(crude){
 			template = Handlebars.compile(crude);
 			content = template(self.model.toJSON());
-			self.$el.append(content);
+			$(element).html(content);
     	});
 		console.log(this.model.attributes);
 		return this;
@@ -146,19 +146,18 @@ Routes = Backbone.Router.extend({
 	start : function(){
 		startView.model = probeTwo;
 		startView.renderTemplate("start.html");
-		startView.el = '#set'
-		startView.renderPartials("set.html");
+		startView.renderPartials("#set","set.html");
 
 		auth('thecookie');
 	},
 	Other : function(){
 		startView.model = probeOne
-		startView.render("other.html");
+		startView.renderTemplate("other.html");
 
 		auth('thecookie');
 	},
 	Content : function(){
-		defaultView.render("content.html");
+		defaultView.renderTemplate("content.html");
 
 		auth('thecookie');
 	}
