@@ -87,12 +87,22 @@ SingularView = Backbone.View.extend({
 	initialize : function(){
 		console.log('New view');
 	},
-	render : function(file){
+	renderTemplate : function(file){
 		self = this;
 		$.get(file, function(crude){
 			template = Handlebars.compile(crude);
 			content = template(self.model.toJSON());
 			self.$el.html(content);
+    	});
+		console.log(this.model.attributes);
+		return this;
+	},
+	renderPartials : function(file){
+		self = this;
+		$.get(file, function(crude){
+			template = Handlebars.compile(crude);
+			content = template(self.model.toJSON());
+			self.$el.append(content);
     	});
 		console.log(this.model.attributes);
 		return this;
@@ -135,7 +145,9 @@ Routes = Backbone.Router.extend({
 	},
 	start : function(){
 		startView.model = probeTwo;
-		startView.render("start.html");
+		startView.renderTemplate("start.html");
+		startView.el = '#set'
+		startView.renderPartials("set.html");
 
 		auth('thecookie');
 	},
