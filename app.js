@@ -104,7 +104,6 @@ SingularView = Backbone.View.extend({
 			content = template(self.model.toJSON());
 			$(element).html(content);
     	});
-		console.log(this.model.attributes);
 		return this;
 	},
 	saveModel : function(){
@@ -164,5 +163,4 @@ Routes = Backbone.Router.extend({
 });
 
 var routes = new Routes();
-
-Backbone.history.start();
+Backbone.history.start({pushState: false});
